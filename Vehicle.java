@@ -2,6 +2,7 @@ package showroomManagement;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 import showroomManagement.EnumColor.color;
 
@@ -32,11 +33,34 @@ public class Vehicle {
 		}
 		return this.totPrice;
 	}
+	
+	public void setCol(String col) {
+		this.col = col;
+	}
+	public int getUid() {
+		return uid;
+	}
+	public String getChasisNo() {
+		return this.chasisNo;
+	}
+	
+	@Override
+	public boolean equals(Object v) {
+		if(v instanceof Vehicle) {
+		if(this.getChasisNo().equals(((Vehicle) v).getChasisNo())) {
+			return true;
+		}
+		}
+		return false;
+	}
 	@Override
 	public String toString() {
 		return "Vehicle [chasisNo=" + chasisNo + ", uid=" + uid + ", color=" + col + ", basePrice=" + basePrice+"total Price= "+this.getPrice(this.col)
 				+ ", manufacturedDate=" + manufacturedDate + ", company=" + company + "]";
 	}
-	
+	@Override
+	public int hashCode() {
+		return Objects.hash(chasisNo, col, company, manufacturedDate, totPrice, uid);
+	}
 	
 }
