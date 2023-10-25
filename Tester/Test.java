@@ -33,22 +33,17 @@ public class Test {
 				uid=s.nextInt();
 				System.out.println("Enter color");
 				color=s.next();
-				try {
-					ValidateColor.validateCol(color);
-				}catch(InvaidColorException e) {
-					System.out.println(e.getMessage());
-					return;
-				}
 				System.out.println("Enter manufacturing date :");
 				md=s.next();
+				System.out.println("Enter company name:");
+				company=s.next();
 				try {
+					ValidateColor.validateCol(color);
 					ValidateManufacturedDate.validateMd(md);
-				}catch(InvalidManufacturedDate e) {
+				}catch(InvaidColorException |InvalidManufacturedDate e) {
 					System.out.println(e.getMessage());
 					return;
 				}
-				System.out.println("Enter company name:");
-				company=s.next();
 				v=new Vehicle(chasis,uid,color,Vehicle.sdf.parse(md),company);
 				if(vehicles.isEmpty()) {
 					vehicles.add(v);
